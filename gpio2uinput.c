@@ -241,6 +241,7 @@ int main(int argc, char **argv)
 {
 	unsigned int offsets[GPIOD_LINE_BULK_MAX_LINES], num_lines = 0, offset;
 	bool active_low = false, watch_rising = false, watch_falling = false;
+	bool bias_set = false;
 	int flags = 0;
 	struct timespec timeout = { 10, 0 };
 	int optc, opti, rv, i, event_type;
@@ -251,7 +252,6 @@ int main(int argc, char **argv)
 	unsigned int button = BTN_SOUTH;
 
 	memset(&ctx, 0, sizeof(ctx));
-	flags = bias_flags("pull-up");
 
 	if ((dev = libevdev_new()) == NULL) {
 		die_perror("libevdev_new() failed");
@@ -275,6 +275,7 @@ int main(int argc, char **argv)
 			break;
 		case 'B':
 			flags = bias_flags(optarg);
+			bias_set = true;
 			break;
 		case 'n':
 			ctx.events_wanted = strtoul(optarg, &end, 10);
@@ -305,6 +306,9 @@ int main(int argc, char **argv)
 			abort();
 		}
 	}
+
+	if (!bias_set)
+		flags = bias_flags("pull-up");
 
 	argc -= optind;
 	argv += optind;

@@ -251,6 +251,7 @@ int main(int argc, char **argv)
 	unsigned int button = BTN_SOUTH;
 
 	memset(&ctx, 0, sizeof(ctx));
+	flags = bias_flags("pull-up");
 
 	if ((dev = libevdev_new()) == NULL) {
 		die_perror("libevdev_new() failed");

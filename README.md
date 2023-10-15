@@ -17,7 +17,6 @@ generate gamepad input events.
 
 # ToDo
 
-- Pull up pins by default
 - Add support for creating multiple virtual gamepads in a single run
 - Add better gamepad button selection capabilities
 - Strip out some irrelevant code from the original program

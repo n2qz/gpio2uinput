@@ -1,5 +1,6 @@
 /* SPDX-License-Identifier: GPL-3.0-or-later */
 /*
+ * Copyright (C) 2023 Nicholas S. Castellano N2QZ <nicholas.s.castellano+github@gmail.com>
  * Derived from libgpiod, Copyright (C) 2017-2018 Bartosz Golaszewski <bartekgola@gmail.com>
  */
 

@@ -33,4 +33,4 @@ this derived work is a program and not a library, it is being
 distributed under GPL (specifically, GPL3), as required by section 2a
 of the LGPL 2.1.  See LICENSE for the complete license.
 
-Nicholas S. Castellano, October 14, 2023.
+Nicholas S. Castellano N2QZ, October 14, 2023.

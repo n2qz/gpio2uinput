@@ -29,10 +29,11 @@ static const struct option longopts[] = {
 	{ "falling-edge",	no_argument,		NULL,	'f' },
 	{ "line-buffered",	no_argument,		NULL,	'b' },
 	{ "format",		required_argument,	NULL,	'F' },
+	{ "device-name",	required_argument,	NULL,	'd' },
 	{ GETOPT_NULL_LONGOPT },
 };
 
-static const char *const shortopts = "+hvlB:n:srfbF:";
+static const char *const shortopts = "+hvlB:n:srfbF:d:";
 
 static void print_help(void)
 {

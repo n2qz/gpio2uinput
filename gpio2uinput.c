@@ -347,6 +347,7 @@ int main(int argc, char **argv)
 		die_perror("error waiting for events");
 
 	libevdev_uinput_destroy(ctx.uidev);
+	libevdev_free(dev);
 
 	return EXIT_SUCCESS;
 }

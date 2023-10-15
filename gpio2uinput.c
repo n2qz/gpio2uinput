@@ -23,6 +23,7 @@ static const struct option longopts[] = {
 	{ "help",		no_argument,		NULL,	'h' },
 	{ "version",		no_argument,		NULL,	'v' },
 	{ "active-low",		no_argument,		NULL,	'l' },
+	{ "active-high",	no_argument,		NULL,	'H' },
 	{ "bias",		required_argument,	NULL,	'B' },
 	{ "num-events",		required_argument,	NULL,	'n' },
 	{ "silent",		no_argument,		NULL,	's' },
@@ -34,7 +35,7 @@ static const struct option longopts[] = {
 	{ GETOPT_NULL_LONGOPT },
 };
 
-static const char *const shortopts = "+hvlB:n:srfbF:d:";
+static const char *const shortopts = "+hvlHB:n:srfbF:d:";
 
 static void print_help(void)
 {
@@ -46,7 +47,8 @@ static void print_help(void)
 	printf("Options:\n");
 	printf("  -h, --help:\t\tdisplay this message and exit\n");
 	printf("  -v, --version:\tdisplay the version and exit\n");
-	printf("  -l, --active-low:\tset the line active state to low\n");
+	printf("  -l, --active-low:\tset the line active state to low (default)\n");
+	printf("  -H, --active-high:\tset the line active state to high\n");
 	printf("  -B, --bias=[as-is|disable|pull-down|pull-up] (defaults to 'pull-up'):\n");
 	printf("		set the line bias\n");
 	printf("  -n, --num-events=NUM:\texit after processing NUM events\n");
@@ -240,7 +242,7 @@ static int event_callback(int event_type, unsigned int line_offset,
 int main(int argc, char **argv)
 {
 	unsigned int offsets[GPIOD_LINE_BULK_MAX_LINES], num_lines = 0, offset;
-	bool active_low = false, watch_rising = false, watch_falling = false;
+	bool active_low = true, watch_rising = false, watch_falling = false;
 	bool bias_set = false;
 	int flags = 0;
 	struct timespec timeout = { 10, 0 };
@@ -272,6 +274,9 @@ int main(int argc, char **argv)
 			return EXIT_SUCCESS;
 		case 'l':
 			active_low = true;
+			break;
+		case 'H':
+			active_low = false;
 			break;
 		case 'B':
 			flags = bias_flags(optarg);

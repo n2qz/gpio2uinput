@@ -312,11 +312,11 @@ int main(int argc, char **argv)
 		}
 	}
 
-	if (!bias_set)
-		flags = bias_flags("pull-up");
-
 	argc -= optind;
 	argv += optind;
+
+	if (!bias_set)
+		flags = bias_flags("pull-up");
 
 	if (watch_rising && !watch_falling)
 		event_type = GPIOD_CTXLESS_EVENT_RISING_EDGE;

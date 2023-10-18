@@ -348,6 +348,11 @@ int main(int argc, char **argv)
 		die("libevdev_uinput_create_from_device() failed: %s", strerror(-err));
 	}
 
+	if (!ctx.silent) {
+		print_version();
+		printf("Waiting for GPIO events...\n\n");
+	}
+
 	rv = gpiod_ctxless_event_monitor_multiple_ext(
 				argv[0], event_type, offsets,
 				num_lines, active_low, libevdev_get_name(dev),
